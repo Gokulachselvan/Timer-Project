@@ -39,26 +39,23 @@ public class SoundSettingsActivity extends AppCompatActivity {
         }
 
         // Play selected sound for preview
-        switch (soundId) {
-            case R.id.soundOption1:
-                mediaPlayer = MediaPlayer.create(this, R.raw.sound1);
-                selectedSoundId = R.id.soundOption1;
-                break;
-            case R.id.soundOption2:
-                mediaPlayer = MediaPlayer.create(this, R.raw.sound2);
-                selectedSoundId = R.id.soundOption2;
-                break;
-            case R.id.soundOption3:
-                mediaPlayer = MediaPlayer.create(this, R.raw.sound3);
-                selectedSoundId = R.id.soundOption3;
-                break;
-            default:
-                selectedSoundId = -1;
-                return;
+        if (soundId == R.id.soundOption1) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound1);
+            selectedSoundId = R.id.soundOption1;
+        } else if (soundId == R.id.soundOption2) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound2);
+            selectedSoundId = R.id.soundOption2;
+        } else if (soundId == R.id.soundOption3) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound3);
+            selectedSoundId = R.id.soundOption3;
+        } else {
+            selectedSoundId = -1;
+            return;
         }
 
         mediaPlayer.start();
     }
+
 
     private void saveSoundSelection() {
         if (selectedSoundId == -1) {

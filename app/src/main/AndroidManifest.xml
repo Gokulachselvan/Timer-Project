@@ -13,7 +13,7 @@
         android:theme="@style/Theme.TimerProject"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".TimerScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,6 @@
         <activity android:name=".FlashScreenActivity" />
         <activity android:name=".SoundSettingsActivity"/>
         <activity android:name=".TimerHistoryActivity"/>
-        <activity android:name=".TimerScreenActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,79 @@
-<ListView android:id="@+id/timerHistoryList"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:layout_height="match_parent">
+
+    <!-- AppBarLayout to hold the Toolbar at the top -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- Top Toolbar with Settings and History Buttons -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/toolbar_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/amrita" />
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Timer History"
+                    android:textColor="@android:color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <!-- Settings Button -->
+                <ImageButton
+                    android:id="@+id/settings_button"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="Settings"
+                    android:src="@drawable/settings"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <!-- History Button -->
+                <ImageButton
+                    android:id="@+id/history_button"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="History"
+                    android:src="@drawable/history"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ListView for Timer History -->
+    <ListView
+        android:id="@+id/timerHistoryList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"
+        android:indicatorLeft="?android:attr/listPreferredItemPaddingLeft" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

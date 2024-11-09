@@ -1,39 +1,107 @@
-<!-- res/layout/activity_sound_settings.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- AppBarLayout to hold the Toolbar at the top -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Notification Sound" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/soundOptionsGroup">
-        <RadioButton
+        <!-- Top Toolbar with Settings and History Buttons -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/toolbar_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/amrita" />
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sound Settings"
+                    android:textColor="@android:color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <!-- Settings Button -->
+                <ImageButton
+                    android:id="@+id/settings_button"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="Settings"
+                    android:src="@drawable/settings" />
+
+                <!-- History Button -->
+                <ImageButton
+                    android:id="@+id/history_button"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="History"
+                    android:src="@drawable/history" />
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main content below the toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="56dp"> <!-- Replaced with fixed dp value -->
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/soundOption1"
-            android:text="Sound 1"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/soundOption2"
-            android:text="Sound 2"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/soundOption3"
-            android:text="Sound 3"/>
-    </RadioGroup>
+            android:text="Select Notification Sound" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/saveSoundButton"
-        android:text="Save Selection"/>
-</LinearLayout>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/soundOptionsGroup">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/soundOption1"
+                android:text="Sound 1"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/soundOption2"
+                android:text="Sound 2"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/soundOption3"
+                android:text="Sound 3"/>
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saveSoundButton"
+            android:text="Save Selection"/>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
