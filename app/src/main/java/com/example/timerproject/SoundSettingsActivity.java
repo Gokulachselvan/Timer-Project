@@ -22,10 +22,10 @@ public class SoundSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound_settings);
 
-        ImageButton settingsButton = findViewById(R.id.settings_button);
+        ImageButton settingsButton = findViewById(R.id.home_button);
         ImageButton historyButton = findViewById(R.id.history_button);
 
-        //settingsButton.setOnClickListener(v -> openSoundSettings());
+        settingsButton.setOnClickListener(v -> openSoundSettings());
         historyButton.setOnClickListener(v -> openTimerHistory());
 
         soundOptionsGroup = findViewById(R.id.soundOptionsGroup);
@@ -95,10 +95,10 @@ public class SoundSettingsActivity extends AppCompatActivity {
     }
 
 
-//    private void openSoundSettings() {
-//        Intent intent = new Intent(this, SoundSettingsActivity.class);
-//        startActivity(intent);
-//    }
+    private void openSoundSettings() {
+        Intent intent = new Intent(this, TimerScreenActivity.class);
+        startActivity(intent);
+    }
 
     private void openTimerHistory() {
         Intent intent = new Intent(this, TimerHistoryActivity.class);

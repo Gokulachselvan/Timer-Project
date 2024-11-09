@@ -24,7 +24,7 @@ public class TimerHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer_history);
 
         ImageButton settingsButton = findViewById(R.id.settings_button);
-        ImageButton historyButton = findViewById(R.id.history_button);
+        ImageButton historyButton = findViewById(R.id.home_button);
 
 
         timerHistoryList = findViewById(R.id.timerHistoryList);
@@ -50,7 +50,7 @@ public class TimerHistoryActivity extends AppCompatActivity {
     }
 
     private void openTimerHistory() {
-        Intent intent = new Intent(this, TimerHistoryActivity.class);
+        Intent intent = new Intent(this, TimerScreenActivity.class);
         startActivity(intent);
     }
 
