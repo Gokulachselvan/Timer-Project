@@ -1,54 +1,151 @@
-<!-- res/layout/activity_timer_screen.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".TimerScreenActivity">
 
-    <TextView
-        android:id="@+id/timerDisplay"
-        android:layout_width="wrap_content"
+    <!-- AppBarLayout to hold the Toolbar at the top -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="00:00:00"
-        android:textSize="48sp"/>
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <EditText
-        android:id="@+id/inputHours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Hours"
-        android:minHeight="48dp" />
+        <!-- Top Toolbar with Settings and History Buttons -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp">
 
-    <EditText
-        android:id="@+id/inputMinutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Minutes"
-        android:minHeight="48dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-    <EditText
-        android:id="@+id/inputSeconds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Seconds"
-        android:minHeight="48dp" />
+                <ImageView
+                    android:id="@+id/toolbar_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/amrita" />
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/startButton"
-        android:text="Start"/>
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Timer"
+                    android:textColor="@android:color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/pauseButton"
-        android:text="Pause"/>
+                <!-- Settings Button -->
+                <ImageButton
+                    android:id="@+id/settings_button"
+                    android:layout_weight="0.3"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="Settings"
+                    android:src="@drawable/settings"
+                    tools:ignore="TouchTargetSizeCheck" />
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/resetButton"
-        android:text="Reset"/>
+                <!-- History Button -->
+                <ImageButton
+                    android:id="@+id/history_button"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="History"
+                    android:src="@drawable/history"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- ScrollView for the main content to avoid clipping issues -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/timerDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"
+                android:textSize="48sp"
+                android:layout_marginTop="20dp" />
+
+            <!-- Input fields for hours, minutes, and seconds -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/inputHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Hours"
+                    android:minHeight="48dp"
+                    android:layout_marginEnd="8dp" />
+
+                <EditText
+                    android:id="@+id/inputMinutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Minutes"
+                    android:minHeight="48dp"
+                    android:layout_marginEnd="8dp" />
+
+                <EditText
+                    android:id="@+id/inputSeconds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Seconds"
+                    android:minHeight="48dp" />
+            </LinearLayout>
+
+            <!-- Start, Pause, Reset Buttons -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/startButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/pauseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pause"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/resetButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reset" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
