@@ -28,7 +28,7 @@
                     android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/amrita" />
+                    android:src="@drawable/logo" />
 
                 <TextView
                     android:id="@+id/toolbar_title"
