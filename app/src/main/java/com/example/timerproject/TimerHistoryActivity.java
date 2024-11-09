@@ -1,10 +1,12 @@
 package com.example.timerproject;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,10 @@ public class TimerHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_history);
 
+        ImageButton settingsButton = findViewById(R.id.settings_button);
+        ImageButton historyButton = findViewById(R.id.history_button);
+
+
         timerHistoryList = findViewById(R.id.timerHistoryList);
 
         // Initialize SQLite database
@@ -34,13 +40,25 @@ public class TimerHistoryActivity extends AppCompatActivity {
 
         // Load and display timer history
         loadTimerHistory();
+        settingsButton.setOnClickListener(v -> openSoundSettings());
+        historyButton.setOnClickListener(v -> openTimerHistory());
+    }
+
+    private void openSoundSettings() {
+        Intent intent = new Intent(this, SoundSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void openTimerHistory() {
+        Intent intent = new Intent(this, TimerHistoryActivity.class);
+        startActivity(intent);
     }
 
     private void loadTimerHistory() {
+        SQLiteDatabase database = openOrCreateDatabase("TimerHistoryDB", MODE_PRIVATE, null);
         timerHistoryArray.clear();
+        Cursor cursor = database.rawQuery("SELECT * FROM TimerHistory ORDER BY id DESC", null);
 
-        // Query to fetch all records from TimerHistory table
-        Cursor cursor = database.rawQuery("SELECT * FROM TimerHistory", null);
         if (cursor.moveToFirst()) {
             do {
                 @SuppressLint("Range") String duration = cursor.getString(cursor.getColumnIndex("duration"));
@@ -50,11 +68,12 @@ public class TimerHistoryActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "No timer history found", Toast.LENGTH_SHORT).show();
         }
-        cursor.close();
 
-        // Notify the adapter to update the ListView
+        cursor.close();
+        database.close();
         adapter.notifyDataSetChanged();
     }
+
 
     @Override
     protected void onDestroy() {

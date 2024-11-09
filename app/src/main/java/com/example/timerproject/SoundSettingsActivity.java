@@ -1,8 +1,10 @@
 package com.example.timerproject;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -19,6 +21,12 @@ public class SoundSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound_settings);
+
+        ImageButton settingsButton = findViewById(R.id.settings_button);
+        ImageButton historyButton = findViewById(R.id.history_button);
+
+        settingsButton.setOnClickListener(v -> openSoundSettings());
+        historyButton.setOnClickListener(v -> openTimerHistory());
 
         soundOptionsGroup = findViewById(R.id.soundOptionsGroup);
 
@@ -63,13 +71,15 @@ public class SoundSettingsActivity extends AppCompatActivity {
             return;
         }
 
+        // Save the selected sound in SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_SELECTED_SOUND, selectedSoundId);
+        editor.putInt(KEY_SELECTED_SOUND, selectedSoundId); // Saving selected sound ID
         editor.apply();
 
-        Toast.makeText(this, "Sound selection saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Sound selection saved successfully", Toast.LENGTH_SHORT).show();
     }
+
 
     private void loadSoundSelection() {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -80,6 +90,16 @@ public class SoundSettingsActivity extends AppCompatActivity {
             savedRadioButton.setChecked(true);
             selectedSoundId = savedSoundId;
         }
+    }
+
+    private void openSoundSettings() {
+        Intent intent = new Intent(this, SoundSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void openTimerHistory() {
+        Intent intent = new Intent(this, TimerHistoryActivity.class);
+        startActivity(intent);
     }
 
     @Override
