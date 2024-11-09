@@ -154,12 +154,17 @@ public class TimerScreenActivity extends AppCompatActivity {
             mediaPlayer = MediaPlayer.create(this, R.raw.sound3);
         } else {
             // Default sound or no sound selected
-            mediaPlayer = MediaPlayer.create(this, R.raw.sound2); // Play default sound2 if no selection
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound2); // Default to sound2
         }
 
-        mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+        // Start playback if mediaPlayer is not null
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+        }
     }
+
+
 
     private void saveTimerHistory(String duration, String endTime) {
         SQLiteDatabase database = openOrCreateDatabase("TimerHistoryDB", MODE_PRIVATE, null);

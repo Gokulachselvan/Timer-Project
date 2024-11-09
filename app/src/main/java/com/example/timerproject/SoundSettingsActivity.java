@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SoundSettingsActivity extends AppCompatActivity {
     private RadioGroup soundOptionsGroup;
-    private static final String PREFS_NAME = "SoundSettings";
+    private static final String PREFS_NAME = "TimerPrefs"; // Change from "SoundSettings"
     private static final String KEY_SELECTED_SOUND = "selectedSound";
     private int selectedSoundId;
     private MediaPlayer mediaPlayer;
@@ -25,7 +25,7 @@ public class SoundSettingsActivity extends AppCompatActivity {
         ImageButton settingsButton = findViewById(R.id.settings_button);
         ImageButton historyButton = findViewById(R.id.history_button);
 
-        settingsButton.setOnClickListener(v -> openSoundSettings());
+        //settingsButton.setOnClickListener(v -> openSoundSettings());
         historyButton.setOnClickListener(v -> openTimerHistory());
 
         soundOptionsGroup = findViewById(R.id.soundOptionsGroup);
@@ -87,15 +87,18 @@ public class SoundSettingsActivity extends AppCompatActivity {
 
         if (savedSoundId != -1) {
             RadioButton savedRadioButton = findViewById(savedSoundId);
-            savedRadioButton.setChecked(true);
-            selectedSoundId = savedSoundId;
+            if (savedRadioButton != null) { // Check for null
+                savedRadioButton.setChecked(true);
+                selectedSoundId = savedSoundId;
+            }
         }
     }
 
-    private void openSoundSettings() {
-        Intent intent = new Intent(this, SoundSettingsActivity.class);
-        startActivity(intent);
-    }
+
+//    private void openSoundSettings() {
+//        Intent intent = new Intent(this, SoundSettingsActivity.class);
+//        startActivity(intent);
+//    }
 
     private void openTimerHistory() {
         Intent intent = new Intent(this, TimerHistoryActivity.class);
@@ -112,4 +115,3 @@ public class SoundSettingsActivity extends AppCompatActivity {
         }
     }
 }
-
